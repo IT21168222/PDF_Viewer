@@ -86,7 +86,10 @@ const HomePage = () => {
       <Footer />
       </>
     ):(
-      <h1>Please Sign In first...</h1>
+      <>
+      <h1>Welcome to Our Site</h1>
+      <p>Please log in to continue...</p>
+      </>
     )}
     </>
 

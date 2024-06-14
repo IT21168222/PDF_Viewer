@@ -49,6 +49,7 @@ function SignIn({ setIsAuthenticated }) {
   }
 
   return (
+    <>
     <div className="container">
       <div className="form-container">
         <form onSubmit={login} className={error ? 'has-error' : ''}>
@@ -84,8 +85,10 @@ function SignIn({ setIsAuthenticated }) {
         </form>
       </div>
       <style>{styles}</style>
-      <Footer />
+      
     </div>
+    <Footer />
+    </>
   );
 }
 
