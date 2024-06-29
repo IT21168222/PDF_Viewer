@@ -50,7 +50,7 @@ export const loginUser = async (req, res) => {
 };
 
 export const refreshToken = (req, res) => {
-    const refreshToken = req.cookies.refreshToken;
+    const refreshToken = req.body.refreshToken;
     if (!refreshToken) {
         return res.sendStatus(401).send('Access denied. No refresh token provided.');
     }
