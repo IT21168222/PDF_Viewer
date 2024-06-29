@@ -2,7 +2,6 @@ import express from 'express'
 import {connectDB} from './config/DBConnect.js'
 import pdfRouter from './routes/pdf.routes.js'
 import userRouter from './routes/auth.routes.js'
-import cookieParser from 'cookie-parser';
 import auth from './middlewares/authMiddleware.js'
 import {config} from 'dotenv'
 import cors from 'cors';
@@ -11,7 +10,6 @@ config();
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser());
 app.use(cors());
 app.use(express.static('public'));
 

@@ -39,13 +39,7 @@ export const loginUser = async (req, res) => {
         if (user && bcrypt.compareSync(password, user.password)) {
             const accessToken = jwt.sign({ username: user.username, role: user.role }, process.env.SECRET_KEY, { expiresIn: '10m' });
             const refreshToken = jwt.sign({ username: user.username }, process.env.RE_SECRET_KEY, { expiresIn: '24h' });
-            
-            res.cookie('refreshToken', refreshToken, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-            });
-            res.json({ accessToken });
+            res.json({ accessToken, refreshToken });
         } else {
             res.status(401).json({ message: 'Username or password incorrect' });
         }
@@ -74,7 +68,6 @@ export const refreshToken = (req, res) => {
 };
 
 export const logoutUser = (req, res) => {
-    res.clearCookie('refreshToken');
     res.send('Logged out successfully');
 };
 
