@@ -82,7 +82,7 @@ npm run dev
 ```
 
 ### Usage
-- Open your browser and visit `http://localhost:5173` to view the application.
+- Open your browser and visit [http://localhost:5173](http://localhost:5173) to view the application.
 
 ### Routes
 
