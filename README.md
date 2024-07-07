@@ -17,6 +17,8 @@ This repository contains a MERN stack application designed to allow users to upl
 1. **Home**: The landing page where users can log in, register, and upload PDF files.
 2. **PDF Viewer**: A page that displays the uploaded PDF files and allows users to view them directly within the application.
 
+
+
 ## Technologies Used
 
 - **Frontend**: React.js with modern UI design trends
@@ -28,10 +30,12 @@ This repository contains a MERN stack application designed to allow users to upl
 
 ## Getting Started
 
+
 ### Prerequisites
 
 - Node.js
 - MongoDB
+  
 
 ### Installation
 
@@ -47,23 +51,38 @@ cd frontend // for frontend
 cd backend  // for backend
 ```
 
-
-3. Install dependencies:
+3. Install backend dependencies:
 ```bash
+cd backend
 npm install
 ```
 
-4. Set Up environment Variables
+4. Install frontend dependencies:
+```bash
+cd ../frontend
+npm install
+```
+### Set Up environment Variables
 
 - Please create a .env file with neccesary variables mentioned in .env example file
 
-### Usage
 
-1. Start the development server:
+### Running the Application
+
+1. Start the backend server:
 ```bash
+cd backend
 npm run dev
 ```
-2. Open your browser and visit `http://localhost:5173` to view the application.
+
+3. Start the frontend server:
+```bash
+cd ../frontend
+npm run dev
+```
+
+### Usage
+- Open your browser and visit `http://localhost:5173` to view the application.
 
 ### Routes
 
