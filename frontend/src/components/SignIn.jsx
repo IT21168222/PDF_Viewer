@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import Footer from "./Footer";
@@ -195,7 +195,7 @@ input::placeholder {
 
 button.login {
   margin-top: 40px;
-  background-color: #ffffff;
+  background-color: #f0f500;
   color: #080710;
   padding: 15px 0;
   font-size: 18px;

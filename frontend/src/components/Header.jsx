@@ -38,7 +38,7 @@ function Header() {
 const styles = `
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #f0a500;
   padding: 20px 10px;
 }
 
@@ -87,7 +87,7 @@ const styles = `
 }
 .btnStyle{
   background-color: dodgerblue;
-  color: black;
+  color: white;
   padding: 5px 12px 5px 12px;
   border-radius:5px;
   font-size: 17px; 

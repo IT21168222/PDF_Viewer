@@ -20,13 +20,12 @@ export default Footer;
 
 
 const styles = `
-.footer {
-    
+.footer {    
     left: 0;
     padding-top: 10px;
     padding-bottom: 20px;
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #f0a500;
     color: black;
     text-align: center;
   }`

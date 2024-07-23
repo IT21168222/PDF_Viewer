@@ -75,7 +75,7 @@ function SignUp() {
           id="password" />
           {passwordError && <p className="error">{passwordError}</p>}
         <br />
-        <button type="submit" className="my">Register</button>
+        <button type="submit" className="registerBtn">Register</button>
       </form>
       </div>
     </div>
@@ -183,10 +183,10 @@ input {
     color: #e5e5e5;
 }
 
-.my {
+.registerBtn {
     margin-top: 50px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #f0f500;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
