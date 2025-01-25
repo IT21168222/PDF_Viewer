@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
-import axios from 'axios';
+import Swal from "sweetalert2";
+import axios from "axios";
 import Footer from "./Footer";
 
 function SignUp() {
@@ -29,61 +29,71 @@ function SignUp() {
   const register = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     try {
+      const response = await axios.post(
+        "https://pdf-viewer-backend-sepia.vercel.app/auth/register",
+        {
+          username: registerEmail,
+          password: registerPassword,
+        }
+      );
 
-      const response = await axios.post('http://localhost:5000/auth/register', {
-        username: registerEmail,
-        password: registerPassword
-      });
-      
       Swal.fire({
-        icon: 'success',
-        title: 'Registration successful! Please Sign in!',
+        icon: "success",
+        title: "Registration successful! Please Sign in!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       }).then(() => navigate("/SignIn"));
-
     } catch (error) {
       console.log(error.message);
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: error.response.data.message ? error.response.data.message : error.message
-  
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message
+          ? error.response.data.message
+          : error.message,
       });
     }
   };
 
   return (
     <>
-    <style>{styles}</style>
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <form onSubmit={register} > {/* Add onSubmit event handler */}
-        <h3>Register Here</h3>
-
-        <label htmlFor="email">Email</label>
-        <input type="email" placeholder="Email..."
-          value={registerEmail}
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }} id="email" />
-
-        <label htmlFor="password">Password</label>
-        <input type="password" placeholder="Password..."
-          value={registerPassword}
-          onChange={handlePasswordChange}
-          id="password" />
-          {passwordError && <p className="error">{passwordError}</p>}
-        <br />
-        <button type="submit" className="registerBtn">Register</button>
-      </form>
+      <style>{styles}</style>
+      <div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <form onSubmit={register}>
+            {" "}
+            {/* Add onSubmit event handler */}
+            <h3>Register Here</h3>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder="Email..."
+              value={registerEmail}
+              onChange={(event) => {
+                setRegisterEmail(event.target.value);
+              }}
+              id="email"
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Password..."
+              value={registerPassword}
+              onChange={handlePasswordChange}
+              id="password"
+            />
+            {passwordError && <p className="error">{passwordError}</p>}
+            <br />
+            <button type="submit" className="registerBtn">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }
-
 
 const styles = `
 *,
@@ -235,6 +245,6 @@ input {
     display: block;
     /* Display error message when there's an error */
 }
-`
+`;
 
 export default SignUp;

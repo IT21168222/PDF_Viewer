@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import Footer from "./Footer";
 
 function SignIn({ setIsAuthenticated }) {
@@ -9,85 +9,97 @@ function SignIn({ setIsAuthenticated }) {
   const [loginPassword, setLoginPassword] = useState("");
   const [error, setError] = useState(null);
 
-
   const login = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: loginEmail,
-          password: loginPassword,
-        }),
-      });
+      const response = await fetch(
+        "https://pdf-viewer-backend-sepia.vercel.app/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: loginEmail,
+            password: loginPassword,
+          }),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Username or password incorrect');
+        throw new Error("Username or password incorrect");
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.accessToken);
-      
+      localStorage.setItem("token", data.accessToken);
+
       Swal.fire({
-        icon: 'success',
-        title: 'Login successful!',
+        icon: "success",
+        title: "Login successful!",
         showConfirmButton: false,
-        timer: 1500
-      }).then(() => navigate("/")).then(() => { window.location.reload(true); });
+        timer: 1500,
+      })
+        .then(() => navigate("/"))
+        .then(() => {
+          window.location.reload(true);
+        });
       setError(null);
-    } 
-    catch (error) {
+    } catch (error) {
       setError(error.message);
     }
   };
 
   const handleRegister = () => {
     navigate("/SignUp");
-  }
+  };
 
   return (
     <>
-    <div className="container">
-      <div className="form-container">
-        <form onSubmit={login} className={error ? 'has-error' : ''}>
-          <h3>Login Here</h3>
+      <div className="container">
+        <div className="form-container">
+          <form onSubmit={login} className={error ? "has-error" : ""}>
+            <h3>Login Here</h3>
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            placeholder="Email..."
-            value={loginEmail}
-            onChange={(event) => setLoginEmail(event.target.value)}
-            id="email"
-            required
-          />
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder="Email..."
+              value={loginEmail}
+              onChange={(event) => setLoginEmail(event.target.value)}
+              id="email"
+              required
+            />
 
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder="Password..."
-            value={loginPassword}
-            onChange={(event) => setLoginPassword(event.target.value)}
-            id="password"
-            required
-          />
-          
-          {error && <div className="error">{error}</div>}
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Password..."
+              value={loginPassword}
+              onChange={(event) => setLoginPassword(event.target.value)}
+              id="password"
+              required
+            />
 
-          <button type="button" onClick={login} className="login">Log In</button>
-          <div className="register-container">
-            <span>Don't have an account? </span>
-            <button type="button" className="register" onClick={handleRegister}>Register</button>
-          </div>
-        </form>
+            {error && <div className="error">{error}</div>}
+
+            <button type="button" onClick={login} className="login">
+              Log In
+            </button>
+            <div className="register-container">
+              <span>Don't have an account? </span>
+              <button
+                type="button"
+                className="register"
+                onClick={handleRegister}
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+        <style>{styles}</style>
       </div>
-      <style>{styles}</style>
-      
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 }

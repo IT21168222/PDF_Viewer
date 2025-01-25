@@ -11,11 +11,14 @@ const HomePage = () => {
   // Function to fetch PDF files from the database
   const fetchPdfFiles = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/pdf/get", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await axios.get(
+        "https://pdf-viewer-backend-sepia.vercel.app/pdf/get",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       setPdfFiles(response.data);
     } catch (error) {
       console.error("Error fetching PDF files:", error);
@@ -44,12 +47,16 @@ const HomePage = () => {
     });
 
     try {
-      await axios.post("http://localhost:5000/pdf/upload", formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://pdf-viewer-backend-sepia.vercel.app/pdf/upload",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       Swal.fire({
         icon: "success",
